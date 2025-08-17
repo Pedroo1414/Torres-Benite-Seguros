@@ -1,0 +1,928 @@
+html {
+  scroll-behavior: smooth; 
+  scroll-padding-top: 100px; /* altura do header */
+}
+
+
+/* Cabeçalho horizontal completo */
+header {
+    position: fixed;      /* fixa o header na tela */
+    top: 0;               /* topo da tela */
+    left: 0;              /* alinhado à esquerda */
+    width: 100%;          /* ocupa toda a largura */
+    z-index: 1000;        /* garante que fique acima dos outros elementos */
+    background-color: #fff; /* opcional: adiciona fundo para não ficar transparente */
+}
+
+/* Interface do header */
+header > .interface {
+    display: flex;
+    justify-content: space-between; /* logo à esquerda, links e botão à direita */
+    align-items: center;
+    padding: 20px 50px; 
+}
+
+/* Logo */
+header .logo {
+    max-width: 150px;
+    height: auto;
+}
+
+/* Menu de navegação horizontal (desktop) */
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0 20px; 
+}
+
+/* Links */
+header nav ul li a {
+    color: #5c5c5c;
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+    font-size: 20px;
+}
+
+header nav ul li a:hover {
+    color: #6cb5ff;
+    transform: scale(1.05);
+}
+
+/* Botão de contato */
+header .btn-contato button {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #0080ff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    margin-left: 20px;
+}
+
+header .btn-contato button:hover {
+    box-shadow: 0 0 8px #6cb5ff;
+    transform: scale(1.05);
+}
+
+/* Menu Desktop - visível em telas maiores */
+.desktop-menu {
+    display: flex;
+    align-items: center;
+}
+
+    
+
+/* Menu Mobile - escondido por padrão */
+.mobile-menu {
+    display: flex;
+     flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -50%;       /* escondido fora da tela */
+    width: 50%;        /* metade da tela */
+    height: 100vh;
+    background-color: #fff;
+    padding-top: 80px; /* espaço para o header */
+    transition: right 0.3s ease;
+    z-index: 999;
+  
+}
+
+/* Botão Mobile (hambúrguer / X) */
+.menu-toggle {
+  margin-left: auto; /* empurra o botão para o canto direito */
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1002; /* acima do menu */
+  position: absolute; /* posiciona sobre o menu */
+  top: 20px;        /* distancia do topo do menu */
+  right: 20px;      /* distancia da direita */
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Transformação do hambúrguer quando aberto */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%; /* escondido fora da tela */
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    padding-top: 80px; /* espaço para o header */
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .mobile-menu.active {
+    right: 0; /* desliza para dentro */
+  }
+
+  .mobile-menu ul {
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 20px;
+        list-style: none;
+        margin-top: 60px; /* espaço para o X */
+  }
+
+  .mobile-menu ul li a {
+    font-size: 18px;
+    color: #333;
+  }
+}
+
+
+
+
+
+/* Banner principal */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    background-size: cover;
+    background-position: left center; /* desloca a imagem para a esquerda */
+    background-repeat: no-repeat;
+}
+
+/* Camadas opcionais de imagens front/back */
+.banner-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-front {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centraliza no meio */
+    width: 45%;          /* continua controlando o tamanho */
+    height: auto;        /* mantém a proporção da imagem */
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;          /* fica acima da de fundo */
+}
+
+
+/* Conteúdo do banner (h1, p, botão) sobreposto acima de tudo */
+.banner-content {
+    position: absolute;        /* sobreposto ao banner e imagens */
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #003366;               /* texto branco sobre gradiente */
+    z-index: 3;                /* garante que fique acima de todas as imagens */
+    padding: 0 20px;
+}
+
+.banner-content p {
+    font-size: 3.2rem;
+    margin-bottom: 50px;
+}
+
+.banner-content button {
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #0080ff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.banner-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #6cb5ff;
+}
+
+
+/*Seção Serviços*/
+
+.servicos {
+    padding: 80px 10%;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.servicos h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #003366;
+}
+
+.servicos p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.cards-servicos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+    width: 70px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/*Fim da seção serviços*/
+
+/* Seção Parceiros*/
+
+.parceiros {
+    padding: 80px 10%;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.texto-parceiros h2 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.texto-parceiros p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.logos-parceiros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.logos-parceiros img {
+    height: 80px;       /* define altura padrão */
+    width: auto;        /* mantém proporção original */ 
+    opacity: 0.8;
+    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}   
+
+.slider-parceiros {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 40px;
+}
+
+.slide-track {
+    display: flex;
+    width: calc(200%); /* porque estamos duplicando os logos */
+    animation: scroll 20s linear infinite;
+}
+
+.slide-track img {
+    height: 80px;
+    width: auto;
+    margin: 0 40px;
+    opacity: 0.8;
+    transition: filter 0.3s, opacity 0.3s;
+}
+
+.slide-track img:hover {
+    opacity: 1;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* move metade do track para o loop */
+}
+
+
+/* Fim da seção Parceiros */
+
+
+/* Seção Sobre Nós */
+.sobre {
+    padding: 60px 10%;
+    background: linear-gradient(135deg, gray, black);
+    color: white;
+}
+
+.container-sobre {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Responsivo para telas menores */
+}
+
+.texto-sobre {
+    flex: 1;
+}
+
+.texto-sobre h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.texto-sobre p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.imagem-sobre {
+    flex: 1;
+    text-align: center;
+}
+
+.imagem-sobre img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.imagem-sobre img:hover {
+    transform: scale(1.05);
+}
+
+/*Seção Testimonials*/
+.testimonials {
+    padding: 80px 10%;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.texto-testimonials h2 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.texto-testimonials p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.cards-testimonials {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-testimonial:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-testimonial p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.cliente-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cliente-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cliente-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #003366;
+}
+
+.cliente-info span {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/*Fim da seção Testimonials*/
+
+/*Seção Contato*/
+.contato {
+    padding: 80px 10%;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container-contato {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.texto-contato {
+    flex: 1;
+    min-width: 300px;
+}
+
+.texto-contato h2 {
+    font-size: 2.5rem;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.texto-contato p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.info-contato p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.info-contato p strong {
+    color: #003366;
+}
+
+.form-contato {
+    flex: 1;
+    min-width: 300px;
+}
+
+.form-contato form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-contato input,
+.form-contato textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.form-contato button {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #003366;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-contato button:hover {
+    background-color: #0055a5;
+}
+
+/*Fim da seção contato*/
+
+
+/*FAQ*/
+
+
+ section > h1 {
+        text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container da FAQ */
+.faq {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Pergunta */
+.faq-question {
+  padding: 18px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #007BFF, #00C6FF);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ícone de expandir/recolher */
+.faq-question::after {
+  content: "+";
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.faq.active .faq-question::after {
+  content: "−";
+  transform: rotate(180deg);
+}
+
+/* Resposta */
+.faq-answer {
+  display: none;
+  padding: 18px 20px;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #f9f9f9;
+  animation: fadeIn 0.3s ease;
+}
+
+.faq.active .faq-answer {
+  display: block;
+}
+
+/* Animação suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*footer*/
+
+.footer {
+    width: 100%;                /* ocupa toda a largura */
+    background-color: #003366;
+    color: white;
+    padding: 60px 0 20px 0;     /* padding horizontal removido */
+}
+
+.container-footer {
+    max-width: 1280px;          /* limita o conteúdo ao centro */
+    margin: 0 auto;             /* centraliza horizontalmente */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 0 10%;             /* opcional: espaçamento interno */
+}
+
+
+.footer-info, .footer-links, .footer-redes {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-info h3 {
+    margin-bottom: 15px;
+}
+
+.footer-links h4,
+.footer-redes h4 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #00bfff;
+}
+
+.footer-redes a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-redes a:hover {
+    color: #00bfff;
+    transform: scale(1.2);
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+}
+
+/* Mobile Responsivo */
+@media (max-width: 768px) {
+
+  /* Header */
+  header > .interface {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  header .logo {
+    max-width: 120px;
+  }
+
+  /* Menu Desktop escondido */
+  .desktop-menu {
+    display: none;
+  }
+
+  /* Botão hamburger */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Menu Mobile ocupa metade da tela */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -50%;      /* escondido fora da tela */
+    width: 50%;        /* metade da tela */
+    height: 100vh;
+    background-color: #fff;
+    padding-top: 80px;
+    transition: right 0.3s ease;
+    z-index: 999;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+  }
+
+  .mobile-menu.active {
+    right: 0; /* desliza para dentro */
+  }
+
+  .mobile-menu ul {
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 20px;
+    list-style: none;
+    margin-top: 60px; /* espaço para o X */
+  }
+
+  .mobile-menu ul li a {
+    font-size: 18px;
+    color: #333;
+  }
+
+.banner-front {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centraliza no meio */
+    width: 45%;          
+    height: auto;        
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;          
+}
+
+/* Conteúdo do banner (h1, p, botão) */
+.banner-content {
+    position: absolute;        
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #003366;
+    z-index: 3;                
+    padding: 0 20px;
+}
+
+.banner-content p {
+    font-size: 3.2rem;
+    margin-bottom: 50px;
+}
+
+.banner-content button {
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #0080ff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.banner-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #6cb5ff;
+}
+
+/* =========================
+   Responsividade
+   ========================= */
+
+/* Tablets (até 1024px) */
+@media (max-width: 1024px) {
+    .banner-front {
+        width: 60%; /* aumenta um pouco para preencher melhor */
+    }
+
+    .banner-content p {
+        font-size: 2.4rem;
+        margin-bottom: 30px;
+    }
+
+    .banner-content button {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+}
+
+/* Celulares (até 768px) */
+@media (max-width: 768px) {
+    .banner-front {
+        width: 80%; /* ocupa mais largura */
+    }
+
+    .banner-content {
+        top: 70%; /* sobe o texto para não cortar */
+    }
+
+    .banner-content p {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .banner-content button {
+        padding: 8px 24px;
+        font-size: 14px;
+    }
+}
+
+/* Celulares muito pequenos (até 480px) */
+@media (max-width: 480px) {
+    .banner-front {
+        width: 95%; /* quase toda a tela */
+    }
+
+    .banner-content {
+        top: 65%;
+        padding: 0 10px;
+    }
+
+    .banner-content p {
+        font-size: 1.4rem;
+    }
+
+    .banner-content button {
+        padding: 6px 20px;
+        font-size: 12px;
+    }
+}
+
+
+  /* Seção Serviços */
+  .cards-servicos {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Seção Parceiros */
+  .logos-parceiros {
+    gap: 20px;
+  }
+
+  /* Seção Sobre Nós */
+  .container-sobre {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .imagem-sobre img {
+    max-width: 90%;
+  }
+
+  /* Testimonials */
+  .cards-testimonials {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Contato */
+  .container-contato {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .form-contato input,
+  .form-contato textarea {
+    font-size: 0.95rem;
+  }
+
+  .form-contato button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  /* Footer */
+  .container-footer {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 5%;
+  }
+
+}
