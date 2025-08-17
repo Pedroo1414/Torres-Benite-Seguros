@@ -26,6 +26,36 @@ document.addEventListener('click', (e) => {
   }
 });
 
+
+// Parceiros
+
+const track = document.querySelector('.slide-track');
+const images = Array.from(track.children);
+const speed = 0.5; // pixels por frame
+
+// Clona todas as imagens e adiciona no final para efeito contínuo
+images.forEach(img => {
+    const clone = img.cloneNode(true);
+    track.appendChild(clone);
+});
+
+let position = 0;
+
+function animate() {
+    position -= speed;
+
+    // Quando metade do track passar, reinicia a posição
+    if (Math.abs(position) >= track.scrollWidth / 2) {
+        position = 0;
+    }
+
+    track.style.transform = `translateX(${position}px)`;
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+
 // FAQ INTERATIVO
 const faqs = document.querySelectorAll('.faq');
 
