@@ -306,16 +306,17 @@ header .btn-contato button:hover {
 .parceiros {
     padding: 80px 10%;
     background-color: #f8f8f8;
+    color: #003366;
     text-align: center;
 }
 
-.texto-parceiros h2 {
+.container-parceiros h2 {
     font-size: 2.5rem;
     color: #003366;
     margin-bottom: 15px;
 }
 
-.texto-parceiros p {
+.container-parceiros p {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 40px;
@@ -337,31 +338,24 @@ header .btn-contato button:hover {
 
 .slider-parceiros {
     overflow: hidden;
-    white-space: nowrap;
-    margin-top: 40px;
+    width: 100%;
 }
 
 .slide-track {
     display: flex;
-    width: calc(200%); /* porque estamos duplicando os logos */
-    animation: scroll 20s linear infinite;
+    gap: 20px;
 }
 
 .slide-track img {
-    height: 80px;
+    height: 60px;
     width: auto;
-    margin: 0 40px;
-    opacity: 0.8;
-    transition: filter 0.3s, opacity 0.3s;
+    flex-shrink: 0;
 }
 
-.slide-track img:hover {
-    opacity: 1;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* move metade do track para o loop */
+@media (max-width: 768px) {
+    .slide-track img {
+        height: 40px;
+    }
 }
 
 
@@ -373,6 +367,7 @@ header .btn-contato button:hover {
     padding: 60px 10%;
     background: linear-gradient(135deg, gray, black);
     color: white;
+    
 }
 
 .container-sobre {
@@ -419,16 +414,16 @@ header .btn-contato button:hover {
     text-align: center;
 }
 
-.texto-testimonials h2 {
+.container-testimonials h2 {
     font-size: 2.5rem;
     color: #003366;
     margin-bottom: 15px;
 }
 
-.texto-testimonials p {
+.container-testimonials p {
     font-size: 1.1rem;
     margin-bottom: 40px;
-    color: #555;
+    color: #003366;
 }
 
 .cards-testimonials {
@@ -874,16 +869,11 @@ header .btn-contato button:hover {
 }
 
 
-  /* Seção Serviços */
-  .cards-servicos {
-    flex-direction: column;
-    gap: 20px;
-  }
 
-  /* Seção Parceiros */
-  .logos-parceiros {
-    gap: 20px;
-  }
+
+
+
+
 
   /* Seção Sobre Nós */
   .container-sobre {
